@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">PantallaClases</string>
+    <string name="fotos">Fotos</string>
+    <string name="button">Button</string>
+    <string name="Mago">Mago</string>
+    <string name="guerrero">Guerrero</string>
+    <string name="ladr_n">Ladrón</string>
+    <string name="berserker">Berserker</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="foto_clase">Foto_Clase</string>
+    <string name="fotoraza">FotoRaza</string>
+    <string name="goblin">Goblin</string>
+    <string name="humano">Humano</string>
+    <string name="enano">Enano</string>
+    <string name="elfo">Elfo</string>
+    <string name="imagenraza">ImagenRaza</string>
+    <string name="introduce_un_nombre">Introduce un nombre</string>
+    <string name="clase">Clase</string>
+    <string name="raza">Raza</string>
+    <string name="_0">0</string>
+    <string name="defensa">Defensa</string>
+    <string name="mochila">Mochila</string>
+    <string name="monedero">Monedero</string>
+    <string name="_100">100</string>
+    <string name="_200">200</string>
+    <string name="guion">-</string>
+    <string name="vida">Vida</string>
+</resources>
