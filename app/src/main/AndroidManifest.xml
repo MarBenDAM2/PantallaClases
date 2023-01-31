@@ -12,7 +12,31 @@
         android:theme="@style/Theme.PantallaClases"
         tools:targetApi="31">
         <activity
-            android:name=".SigActivity"
+            android:name=".FightActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CommerceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EnterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RecogerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EnemigoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MercaderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CiudadActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ObjetoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".RandomEventActivity"
             android:exported="false" />
         <activity
             android:name=".Resumen"

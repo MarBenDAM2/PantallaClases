@@ -28,7 +28,7 @@ class Resumen : AppCompatActivity() {
         }
         //Boton a siguiente
         binding.buttonComenzar.setOnClickListener(){
-            crearActividad(SigActivity::class.java)
+            crearActividad(RandomEventActivity::class.java)
         }
 
         when {
@@ -86,7 +86,7 @@ class Resumen : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun crearActividad(clase: Class<SigActivity>) {
+    private fun crearActividad(clase: Class<RandomEventActivity>) {
         val intent = Intent(this, clase)
         startActivity(intent)
     }

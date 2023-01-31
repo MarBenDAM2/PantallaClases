@@ -28,4 +28,14 @@
     <string name="vida">Vida</string>
     <string name="volver_a_empezar">Volver a empezar</string>
     <string name="comenzar_aventura">Comenzar Aventura</string>
+    <string name="paisaje">Paisaje</string>
+    <string name="dadorandom">DadoRandom</string>
+    <string name="GameDescription">Comienza la aventura, pulsa el DADO para avanzar. CUIDADO puedes encontrarte enemigos</string>
+    <string name="continuar">Continuar</string>
+    <string name="recoger">Recoger</string>
+    <string name="objeto">Objeto</string>
+    <string name="entrar">Entrar</string>
+    <string name="comerciar">Comerciar</string>
+    <string name="huir">Huir</string>
+    <string name="luchar">Luchar</string>
 </resources>
