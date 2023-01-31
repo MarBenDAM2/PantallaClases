@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.view.animation.AccelerateInterpolator
 import android.widget.Button
-import android.widget.ImageView
 import com.example.pantallaclases.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun llamadaBotones(lista: ArrayList<Button>){
+        var nom_clase = ""
         //He creado un array con todos los botones para no ir uno por uno y que se vea mejor
         for (button in lista){
             button.setOnClickListener {
@@ -36,8 +35,7 @@ class MainActivity : AppCompatActivity() {
                         //Cambiamos la imagen
                         binding.ImagenClase.setBackgroundResource(R.drawable.berserker)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenClase.contentDescription = "berserker"
+                        nom_clase = "berserker"
 
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
@@ -48,8 +46,7 @@ class MainActivity : AppCompatActivity() {
                         //Cambiamos la imagen
                         binding.ImagenClase.setBackgroundResource(R.drawable.ladron)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenClase.contentDescription = "ladron"
+                        nom_clase = "ladron"
 
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
@@ -59,8 +56,7 @@ class MainActivity : AppCompatActivity() {
                         //Cambiamos la imagen
                         binding.ImagenClase.setBackgroundResource(R.drawable.mago)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenClase.contentDescription = "mago"
+                        nom_clase = "mago"
 
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
@@ -70,8 +66,7 @@ class MainActivity : AppCompatActivity() {
                         //Cambiamos la imagen
                         binding.ImagenClase.setBackgroundResource(R.drawable.guerrero)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenClase.contentDescription = "guerrero"
+                        nom_clase = "guerrero"
 
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
@@ -79,7 +74,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     binding.buttonAccept -> {
                         //Hacemos el intent a la siguiente actividad (Eleccion de raza)
-                        crearActividad(Raza::class.java)
+                        crearActividad(Raza::class.java, nom_clase)
                     }
                 }
 
@@ -87,11 +82,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun crearActividad(clase : Class<*>){
+    fun crearActividad(clase : Class<*>, nom_clase : String){
         val intent = Intent(this, clase)
-        startActivity(intent)
+        intent.putExtra("clase", nom_clase)
 
-        intent.putExtra("clase", binding.ImagenClase.contentDescription)
+        startActivity(intent)
     }
 
 }

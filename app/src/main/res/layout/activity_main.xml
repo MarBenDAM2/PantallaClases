@@ -108,7 +108,7 @@
 
     <ImageView
         android:id="@+id/ImagenClase"
-        android:layout_width="170dp"
+        android:layout_width="195dp"
         android:layout_height="230dp"
         android:layout_marginStart="120dp"
         android:layout_marginTop="32dp"

@@ -26,4 +26,6 @@
     <string name="_200">200</string>
     <string name="guion">-</string>
     <string name="vida">Vida</string>
+    <string name="volver_a_empezar">Volver a empezar</string>
+    <string name="comenzar_aventura">Comenzar Aventura</string>
 </resources>

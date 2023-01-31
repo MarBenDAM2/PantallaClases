@@ -21,6 +21,7 @@ class Raza : AppCompatActivity() {
         llamadaBotones(lista)
     }
     fun llamadaBotones(lista: ArrayList<Button>){
+        var raza = ""
         //He creado un array con todos los botones para no ir uno por uno y que se vea mejor
         for (button in lista){
             button.setOnClickListener {
@@ -29,30 +30,29 @@ class Raza : AppCompatActivity() {
                         //Cambiamos la imagen
                         binding.ImagenRaza.setBackgroundResource(R.drawable.elfo)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenRaza.contentDescription = "elfo"
+                        raza = "elfo"
 
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
 
                     }
                     binding.buttonEnano -> {
+
                         //Cambiamos la imagen
                         binding.ImagenRaza.setBackgroundResource(R.drawable.enano)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenRaza.contentDescription = "enano"
+                        raza = "enano"
 
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
 
                     }
                     binding.buttonHumano -> {
+
                         //Cambiamos la imagen
                         binding.ImagenRaza.setBackgroundResource(R.drawable.humano)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenRaza.contentDescription = "humano"
+                        raza = "humano"
 
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
@@ -62,8 +62,7 @@ class Raza : AppCompatActivity() {
                         //Cambiamos la imagen
                         binding.ImagenRaza.setBackgroundResource(R.drawable.goblin)
 
-                        //Ponemos el contentdescription para poder cogerlo en la siguiente actividad
-                        binding.ImagenRaza.contentDescription = "goblin"
+                        raza = "goblin"
 
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
@@ -71,17 +70,19 @@ class Raza : AppCompatActivity() {
                     }
                     binding.buttonAccept -> {
                         //Hacemos el intent a la siguiente actividad (Resumen)
-                        crearActividad(Resumen::class.java)
+                        crearActividad(Resumen::class.java, raza)
                     }
                 }
 
             }
         }
     }
-    fun crearActividad(clase : Class<*>){
-        val intent = Intent(this, clase)
-        startActivity(intent)
-        intent.putExtra("raza", binding.ImagenRaza.contentDescription)
+    fun crearActividad(clase : Class<*>, raza : String){
+        val new_intent = Intent(this, clase)
+        new_intent.putExtra("clase", intent.getStringExtra("clase"))
+        new_intent.putExtra("raza", raza)
+
+        startActivity(new_intent)
     }
 
 
