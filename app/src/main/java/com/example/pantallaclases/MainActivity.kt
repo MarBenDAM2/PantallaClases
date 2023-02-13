@@ -8,7 +8,7 @@ import android.widget.Button
 import com.example.pantallaclases.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    
+    var nom_clase = ""
     private lateinit var binding: ActivityMainBinding
     
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun llamadaBotones(lista: ArrayList<Button>){
-        var nom_clase = ""
+
         //He creado un array con todos los botones para no ir uno por uno y que se vea mejor
         for (button in lista){
             button.setOnClickListener {

@@ -8,6 +8,7 @@ import android.widget.Button
 import com.example.pantallaclases.databinding.ActivityRazaBinding
 
 class Raza : AppCompatActivity() {
+    var raza = ""
     private lateinit var binding: ActivityRazaBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,6 @@ class Raza : AppCompatActivity() {
         llamadaBotones(lista)
     }
     fun llamadaBotones(lista: ArrayList<Button>){
-        var raza = ""
         //He creado un array con todos los botones para no ir uno por uno y que se vea mejor
         for (button in lista){
             button.setOnClickListener {
@@ -77,7 +77,7 @@ class Raza : AppCompatActivity() {
             }
         }
     }
-    fun crearActividad(clase : Class<*>, raza : String){
+    fun crearActividad(clase : Class<Resumen>, raza : String){
         val new_intent = Intent(this, clase)
         new_intent.putExtra("clase", intent.getStringExtra("clase"))
         new_intent.putExtra("raza", raza)
