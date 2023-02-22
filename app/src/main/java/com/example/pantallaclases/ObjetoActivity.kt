@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.pantallaclases.databinding.ActivityObjetoBinding
+import com.google.gson.Gson
 
 
 data class Objeto(
@@ -16,6 +17,7 @@ data class Objeto(
 
 class ObjetoActivity : AppCompatActivity() {
     private lateinit var binding : ActivityObjetoBinding
+    lateinit var personaje: Personaje
 
     private val arrayObj : ArrayList<String> = arrayListOf("Espada", "Escudo", "Arco", "Maza", "Vara")
 
@@ -27,6 +29,7 @@ class ObjetoActivity : AppCompatActivity() {
         binding = ActivityObjetoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        personaje = Gson().fromJson(intent.getStringExtra("Personaje"), Personaje::class.java)
 
         //Que escoja uno aleatorio y cambie a la foto correspondiente.
         when (objeto.nombre){
@@ -38,27 +41,23 @@ class ObjetoActivity : AppCompatActivity() {
         }
 
 
-
-
-        //hazme un arraylist de los dos botones que tengo
         binding.button.setOnClickListener{
-            val intent = Intent(this, RandomEventActivity::class.java)
-            startActivity(intent)
+            crearIntent(RandomEventActivity::class.java)
         }
 
         binding.button2.setOnClickListener{
-            if (ObjetoActivity().objeto.peso <= Resumen().p1.mochila.tam){
-
-                //Añadimos el objeto a la mochila
-                Resumen().p1.mochila.objetos.add(ObjetoActivity().objeto)
-                //Le quitamos el peso a la mochila
-                Resumen().p1.mochila.tam -= ObjetoActivity().objeto.peso
-                //Mostramos el texto "Recogido"
+            if (personaje.mochila.tam >= objeto.peso){
+                personaje.mochila.tam -= objeto.peso
+                personaje.mochila.objetos.add(objeto)
                 binding.textView2.visibility = View.VISIBLE
-                //Volvemos a la aleatoria
-                val intent = Intent(this, RandomEventActivity::class.java)
-                startActivity(intent)
             }
+
+            crearIntent(RandomEventActivity::class.java)
         }
+    }
+    private fun crearIntent(Class: Class<*>){
+        val intent = Intent(this, Class)
+        intent.putExtra("Personaje", Gson().toJson(personaje))
+        startActivity(intent)
     }
 }

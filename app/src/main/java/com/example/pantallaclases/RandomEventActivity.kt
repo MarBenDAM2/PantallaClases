@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.pantallaclases.databinding.ActivityRandomEventBinding
+import com.google.gson.Gson
 
 class RandomEventActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRandomEventBinding
+    private lateinit var personaje: Personaje
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_random_event)
@@ -16,6 +18,9 @@ class RandomEventActivity : AppCompatActivity() {
         binding.buttonRandEvent.setOnClickListener {
             selectEvent()
         }
+
+        //Para el personaje
+        personaje = Gson().fromJson(intent.getStringExtra("Personaje"), Personaje::class.java)
     }
 
     private fun selectEvent(){
@@ -39,6 +44,7 @@ class RandomEventActivity : AppCompatActivity() {
 
     private fun crearIntent(Class: Class<*>){
         val intent = Intent(this, Class)
+        intent.putExtra("Personaje", Gson().toJson(personaje))
         startActivity(intent)
     }
 }

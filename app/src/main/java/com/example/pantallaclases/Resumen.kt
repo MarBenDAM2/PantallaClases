@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.example.pantallaclases.databinding.ActivityResumenBinding
+import com.google.gson.Gson
 import kotlin.random.Random
 
 class Resumen : AppCompatActivity() {
@@ -114,6 +115,7 @@ class Resumen : AppCompatActivity() {
 
     private fun crearActividad(clase: Class<RandomEventActivity>) {
         val intent = Intent(this, clase)
+        intent.putExtra("Personaje", Gson().toJson(p1))
         startActivity(intent)
     }
 }

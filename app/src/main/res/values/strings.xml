@@ -39,4 +39,7 @@
     <string name="huir">Huir</string>
     <string name="luchar">Luchar</string>
     <string name="recogido">RECOGIDO</string>
+    <string name="vender">Vender</string>
+    <string name="comprar">Comprar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>
