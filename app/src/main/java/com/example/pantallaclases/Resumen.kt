@@ -18,7 +18,7 @@ class Resumen : AppCompatActivity() {
         Random.nextInt(10, 15),
         Random.nextInt(1,5),
         Mochila(arrayListOf(), 100),
-        Monedero(0, 0, 0)
+        Monedero(1150)
     )
     private lateinit var binding: ActivityResumenBinding
 
@@ -37,15 +37,8 @@ class Resumen : AppCompatActivity() {
         binding.Dato4.text = p1.mochila.tam.toString()
 
         //Texto de monedero
-        binding.Dato5.text =
-            buildString {
-                append(" Oro: ")
-                append(p1.monedero.oro.toString())
-                append(" Plata: ")
-                append(p1.monedero.plata.toString())
-                append(" Cobre: ")
-                append(p1.monedero.cobre.toString())
-            }
+        binding.Dato5.text = p1.monedero.dinero.toString()
+
         //Boton a inicio
         binding.buttonVuelta.setOnClickListener {
             aInicio(MainActivity::class.java)
@@ -58,19 +51,19 @@ class Resumen : AppCompatActivity() {
         //Cuando sea una clase u otra entonces pues cambia la imagen y la hace visible
         when (intent.getStringExtra("clase")) {
             "berserker" -> {
-                binding.imgClase.setBackgroundResource(R.drawable.berserker)
+                binding.imgClase.setBackgroundResource(R.mipmap.berserker)
                 binding.imgClase.visibility = View.VISIBLE
             }
             "ladron" -> {
-                binding.imgClase.setBackgroundResource(R.drawable.ladron)
+                binding.imgClase.setBackgroundResource(R.mipmap.ladron)
                 binding.imgClase.visibility = View.VISIBLE
             }
             "mago" -> {
-                binding.imgClase.setBackgroundResource(R.drawable.mago)
+                binding.imgClase.setBackgroundResource(R.mipmap.mago)
                 binding.imgClase.visibility = View.VISIBLE
             }
             "guerrero" -> {
-                binding.imgClase.setBackgroundResource(R.drawable.berserker)
+                binding.imgClase.setBackgroundResource(R.mipmap.berserker)
                 binding.imgClase.visibility = View.VISIBLE
             }
         }

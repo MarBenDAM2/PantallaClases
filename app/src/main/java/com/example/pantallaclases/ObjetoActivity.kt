@@ -11,15 +11,19 @@ import com.google.gson.Gson
 data class Objeto(
     var nombre: String,
     var peso: Int,
-    var valor: Int,
+    var precio: Int,
     var vida: Int
-)
+) {
+    override fun toString(): String {
+        return "\nNombre: $nombre, peso: $peso, precio: $precio, vida: $vida"
+    }
+}
 
 class ObjetoActivity : AppCompatActivity() {
     private lateinit var binding : ActivityObjetoBinding
     lateinit var personaje: Personaje
 
-    private val arrayObj : ArrayList<String> = arrayListOf("Espada", "Escudo", "Arco", "Maza", "Vara")
+    val arrayObj : ArrayList<String> = arrayListOf("Espada", "Escudo", "Arco", "Maza", "Vara")
 
     private val objeto = Objeto(arrayObj.random(), 5, 10, 20)
 
@@ -46,9 +50,13 @@ class ObjetoActivity : AppCompatActivity() {
         }
 
         binding.button2.setOnClickListener{
+            //Si el tamaño de la mochila es mayor o igual al peso del objeto
             if (personaje.mochila.tam >= objeto.peso){
+                //Reduce el peso de la mochila
                 personaje.mochila.tam -= objeto.peso
+                //Lo añade a la mochila
                 personaje.mochila.objetos.add(objeto)
+                //Muestra el texto de "RECOGIDO"
                 binding.textView2.visibility = View.VISIBLE
             }
 
@@ -60,4 +68,7 @@ class ObjetoActivity : AppCompatActivity() {
         intent.putExtra("Personaje", Gson().toJson(personaje))
         startActivity(intent)
     }
+
+
+
 }

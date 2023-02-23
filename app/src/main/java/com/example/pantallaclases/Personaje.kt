@@ -4,4 +4,4 @@ data class Personaje(var raza: String, var clase: String, var vida: Int, var fue
 
 data class Mochila(var objetos: ArrayList<Objeto>, var tam: Int)
 
-data class Monedero(var oro: Int, var plata: Int, var cobre: Int)
+data class Monedero(var dinero: Int)

@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val lista = arrayListOf(binding.buttonBerserker, binding.buttonThief, binding.buttonMago,
-            binding.buttonGuerrero, binding.buttonAccept)
+            binding.buttonGuerrero, binding.buttonAceptar)
 
         llamadaBotones(lista)
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
 
                     binding.buttonBerserker -> {
                         //Cambiamos la imagen
-                        binding.ImagenClase.setBackgroundResource(R.drawable.berserker)
+                        binding.ImagenClase.setImageResource(R.mipmap.berserker)
 
                         nom_clase = "berserker"
 
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
                     binding.buttonThief -> {
                         //Cambiamos la imagen
-                        binding.ImagenClase.setBackgroundResource(R.drawable.ladron)
+                        binding.ImagenClase.setImageResource(R.mipmap.ladron)
 
                         nom_clase = "ladron"
 
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     binding.buttonMago -> {
                         //Cambiamos la imagen
-                        binding.ImagenClase.setBackgroundResource(R.drawable.mago)
+                        binding.ImagenClase.setImageResource(R.mipmap.mago)
 
                         nom_clase = "mago"
 
@@ -64,7 +64,7 @@ class MainActivity : AppCompatActivity() {
                     binding.buttonGuerrero -> {
 
                         //Cambiamos la imagen
-                        binding.ImagenClase.setBackgroundResource(R.drawable.guerrero)
+                        binding.ImagenClase.setImageResource(R.mipmap.guerrero)
 
                         nom_clase = "guerrero"
 
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
                         binding.ImagenClase.visibility = View.VISIBLE
 
                     }
-                    binding.buttonAccept -> {
+                    binding.buttonAceptar -> {
                         //Hacemos el intent a la siguiente actividad (Eleccion de raza)
                         crearActividad(Raza::class.java, nom_clase)
                     }
