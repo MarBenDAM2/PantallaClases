@@ -3,10 +3,12 @@ package com.example.pantallaclases
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import com.example.pantallaclases.databinding.ActivityFightBinding
 import com.google.gson.Gson
+import java.util.*
 import kotlin.random.Random
 
 data class Enemigo (val tipo : String, var vida : Int, var ataque : Int)
@@ -14,6 +16,7 @@ data class Enemigo (val tipo : String, var vida : Int, var ataque : Int)
 class FightActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFightBinding
     lateinit var personaje: Personaje
+    lateinit var tts : TextToSpeech
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fight)
@@ -32,6 +35,7 @@ class FightActivity : AppCompatActivity() {
         binding.VidaUsuario.text = personaje.vida.toString()
 
         binding.AtacarButton.setOnClickListener{
+            llamada_tts("Atacas")
             ataque(enemigo)
         }
 
@@ -72,6 +76,8 @@ class FightActivity : AppCompatActivity() {
             //El ataque es correcto y quita vida
             bajarVidaEnemigo(enemigo)
 
+            llamada_tts("Has acertado, bien chaval!")
+
             //Hacemos un delay de 1 segundo para usar bajarVidaPersonaje
             binding.AtacarButton.postDelayed({
 
@@ -86,13 +92,15 @@ class FightActivity : AppCompatActivity() {
             //La visibilidad de "FalloText" será visible durante 1 segundo y despues se volverá invisible
             binding.FalloText.visibility = View.VISIBLE
 
+            llamada_tts("Has fallado, ¿Un poco malo no?")
+
             //Retrasamos 1 segundo ocultar el texto de fallo
             binding.FalloText.postDelayed({
 
                 //Ocultamos el texto de fallo
                 binding.FalloText.visibility = View.GONE
 
-            }, 2000)
+            }, 1000)
 
 
             //Le bajamos la vida al personaje
@@ -125,11 +133,14 @@ class FightActivity : AppCompatActivity() {
         }
 
         if (enemigo.vida == 0){
+
+            llamada_tts("Has matado al enemigo, bien hecho! De recompensa te daremos 100 monedas y 3 curas")
+
             val objeto_regalo = Objeto("Cura", 5, 20, 50)
 
-            addToMochila(personaje, objeto_regalo)
-            addToMochila(personaje, objeto_regalo)
-            addToMochila(personaje, objeto_regalo)
+            repeat(3){
+                addToMochila(personaje, objeto_regalo)
+            }
 
             personaje.monedero.dinero += 100
 
@@ -197,6 +208,15 @@ class FightActivity : AppCompatActivity() {
         binding.VidaActual.text = vidaEnemigo.toString()
 
         return Enemigo(tipoEnemigo, vidaEnemigo, ataqueEnemigo)
+    }
+
+    fun llamada_tts(texto: String){
+        tts = TextToSpeech(this, TextToSpeech.OnInitListener { status ->
+            if (status != TextToSpeech.ERROR){
+                tts.language = Locale("es", "ES")
+                tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
     }
 
     private fun clase(Class: Class<*>){

@@ -3,17 +3,22 @@ package com.example.pantallaclases
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import com.example.pantallaclases.databinding.ActivityRandomEventBinding
 import com.google.gson.Gson
+import java.util.*
 
 class RandomEventActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRandomEventBinding
     private lateinit var personaje: Personaje
+    lateinit var tts: TextToSpeech
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_random_event)
         binding = ActivityRandomEventBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        llamada_tts("Pulsa el dado.")
 
         binding.buttonRandEvent.setOnClickListener {
             selectEvent()
@@ -40,6 +45,15 @@ class RandomEventActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun llamada_tts(texto: String){
+        tts = TextToSpeech(this, TextToSpeech.OnInitListener { status ->
+            if (status != TextToSpeech.ERROR) {
+                tts.language = Locale("es", "ES")
+                tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
     }
 
     private fun crearIntent(Class: Class<*>){

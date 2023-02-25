@@ -3,14 +3,18 @@ package com.example.pantallaclases
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.example.pantallaclases.databinding.ActivityMercaderBinding
 import com.google.gson.Gson
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MercaderActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMercaderBinding
     lateinit var personaje: Personaje
+    lateinit var tts : TextToSpeech
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mercader)
@@ -20,6 +24,7 @@ class MercaderActivity : AppCompatActivity() {
         //Variable personaje que contendrá todo lo de personaje
         personaje = Gson().fromJson(intent.getStringExtra("Personaje"), Personaje::class.java)
 
+        llamada_tts("Bienvenido, ¿Qué deseas hacer?")
 
         //Array con los botones de la "etapa 2" del tradeo
         val arrayBotonesE2Comercio : ArrayList<View> = arrayListOf(binding.ComprarButton, binding.VenderButton, binding.CancelButton)
@@ -39,16 +44,17 @@ class MercaderActivity : AppCompatActivity() {
 
         //Boton "Continuar" -> Vuelve a la pantalla de RandomEvent
         binding.ContinuarButton.setOnClickListener {
+            llamada_tts("Vale, hasta luego!")
             if (intent.getIntExtra("Veces", 0) == 1){
                 clase(EnterActivity::class.java)
             } else {
                 clase(RandomEventActivity::class.java)
             }
-
         }
 
         //Boton "Comerciar" -> Etapa 2 del tradeo
         binding.ComerciarButton.setOnClickListener {
+            llamada_tts("¿Qué deseas hacer?")
             etapa2Comercio(arrayBotonesE2Comercio)
         }
 
@@ -80,6 +86,7 @@ class MercaderActivity : AppCompatActivity() {
     }
 
     fun etapa3Comercio(arrayBotonesE2Comercio: ArrayList<View>, personaje: Personaje){
+
         //Ocultamos todo lo de la segunda etapa
         goneOrNotUI(arrayBotonesE2Comercio, true)
 
@@ -99,6 +106,7 @@ class MercaderActivity : AppCompatActivity() {
             append(" monedas")
         }
 
+        llamada_tts("¿Cuántos quieres comprar?")
         //Mostramos las vistas de esta etapa
         goneOrNotUI(arrayVistasE3Comercio, false)
 
@@ -138,6 +146,7 @@ class MercaderActivity : AppCompatActivity() {
 
         //Realizar compra
         binding.RealizarCompraButton.setOnClickListener {
+            llamada_tts("¡Gracias por comprar!")
             //Restamos el dinero
             personaje.monedero.dinero -= precioTotal
 
@@ -165,6 +174,7 @@ class MercaderActivity : AppCompatActivity() {
     }
 
     fun etapa4Comercio(arrayBotonesE2Comercio: ArrayList<View>, personaje: Personaje){
+        llamada_tts("¿Que objeto quieres venderme?")
         //Cambiar imagen mercader por una mochila
         binding.imageView4.setImageResource(R.drawable.mochila)
 
@@ -236,6 +246,7 @@ class MercaderActivity : AppCompatActivity() {
 
         //Realizar venta
         binding.RealizarCompraButton.setOnClickListener {
+            llamada_tts("Me interesa el objeto, ¡Gracias por venderlo!")
             //Sumamos el dinero
             personaje.monedero.dinero += personaje.mochila.objetos[binding.EditTextEleccionCantidad.text.toString().toInt()].precio / 2
 
@@ -274,6 +285,15 @@ class MercaderActivity : AppCompatActivity() {
 
     }
 
+    fun llamada_tts(texto: String){
+        tts = TextToSpeech(this, TextToSpeech.OnInitListener { status ->
+            if (status != TextToSpeech.ERROR) {
+                tts.language = Locale("es", "ES")
+                tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
+    }
+
     fun goneOrNotUI(arrayViews: ArrayList<View>, gone: Boolean){
         if (gone) {
             for (view in arrayViews) {
@@ -285,6 +305,7 @@ class MercaderActivity : AppCompatActivity() {
             }
         }
     }
+
     private fun clase(Class: Class<*>){
         val intent = Intent(this, Class)
         intent.putExtra("Personaje", Gson().toJson(personaje))

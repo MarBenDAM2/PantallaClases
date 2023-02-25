@@ -3,13 +3,17 @@ package com.example.pantallaclases
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.View
 import android.widget.Button
 import com.example.pantallaclases.databinding.ActivityRazaBinding
+import java.util.*
+import kotlin.collections.ArrayList
 
 class Raza : AppCompatActivity() {
     var raza = ""
     private lateinit var binding: ActivityRazaBinding
+    lateinit var tts: TextToSpeech
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_raza)
@@ -22,6 +26,7 @@ class Raza : AppCompatActivity() {
         llamadaBotones(lista)
     }
     fun llamadaBotones(lista: ArrayList<Button>){
+        llamada_tts("Elige una raza")
         //He creado un array con todos los botones para no ir uno por uno y que se vea mejor
         for (button in lista){
             button.setOnClickListener {
@@ -35,6 +40,8 @@ class Raza : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la raza elfo")
+
                     }
                     binding.buttonEnano -> {
 
@@ -46,6 +53,7 @@ class Raza : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la raza enano")
                     }
                     binding.buttonHumano -> {
 
@@ -57,6 +65,7 @@ class Raza : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la raza humano")
                     }
                     binding.buttonGoblin -> {
                         //Cambiamos la imagen
@@ -67,6 +76,7 @@ class Raza : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenRaza.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la raza goblin")
                     }
                     binding.buttonAccept -> {
                         //Hacemos el intent a la siguiente actividad (Resumen)
@@ -77,6 +87,16 @@ class Raza : AppCompatActivity() {
             }
         }
     }
+
+    fun llamada_tts(texto: String){
+        tts = TextToSpeech(this, TextToSpeech.OnInitListener { status ->
+            if (status != TextToSpeech.ERROR) {
+                tts.language = Locale("es", "ES")
+                tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
+    }
+
     fun crearActividad(clase : Class<Resumen>, raza : String){
         val new_intent = Intent(this, clase)
         new_intent.putExtra("clase", intent.getStringExtra("clase"))

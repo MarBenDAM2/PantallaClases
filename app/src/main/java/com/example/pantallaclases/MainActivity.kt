@@ -4,13 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.speech.tts.TextToSpeech
 import android.widget.Button
 import com.example.pantallaclases.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     var nom_clase = ""
     private lateinit var binding: ActivityMainBinding
-    
+    lateinit var tts: TextToSpeech
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun llamadaBotones(lista: ArrayList<Button>){
+        llamada_tts("Bienvenido al juego, elige una clase")
 
         //He creado un array con todos los botones para no ir uno por uno y que se vea mejor
         for (button in lista){
@@ -40,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la clase berserker")
                     }
 
                     binding.buttonThief -> {
@@ -51,6 +55,7 @@ class MainActivity : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la clase ladrón")
                     }
                     binding.buttonMago -> {
                         //Cambiamos la imagen
@@ -60,6 +65,8 @@ class MainActivity : AppCompatActivity() {
 
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
+
+                        llamada_tts("Has elegido la clase mago")
                     }
                     binding.buttonGuerrero -> {
 
@@ -71,6 +78,8 @@ class MainActivity : AppCompatActivity() {
                         //Hacemos visible la imagen
                         binding.ImagenClase.visibility = View.VISIBLE
 
+                        llamada_tts("Has elegido la clase guerrero")
+
                     }
                     binding.buttonAceptar -> {
                         //Hacemos el intent a la siguiente actividad (Eleccion de raza)
@@ -78,6 +87,15 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
+            }
+        }
+    }
+
+    fun llamada_tts(texto: String){
+        tts = TextToSpeech(this) { status ->
+            if (status != TextToSpeech.ERROR) {
+                tts.language = java.util.Locale("es", "ES")
+                tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null)
             }
         }
     }

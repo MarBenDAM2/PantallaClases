@@ -3,10 +3,12 @@ package com.example.pantallaclases
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.speech.tts.TextToSpeech
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.example.pantallaclases.databinding.ActivityResumenBinding
 import com.google.gson.Gson
+import java.util.*
 import kotlin.random.Random
 
 class Resumen : AppCompatActivity() {
@@ -14,19 +16,22 @@ class Resumen : AppCompatActivity() {
     var p1 : Personaje = Personaje(
         Raza().raza,
         MainActivity().nom_clase,
-        10000,
+        100,
         Random.nextInt(10, 15),
         Random.nextInt(1,5),
         Mochila(arrayListOf(), 100),
         Monedero(150)
     )
     private lateinit var binding: ActivityResumenBinding
+    lateinit var tts : TextToSpeech
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_resumen)
         binding = ActivityResumenBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        llamada_tts("Introduce tu nombre y después pulsa en Comenzar aventura para iniciar el juego")
 
         //Numeros aleatorios para fuerza y defensa
         binding.Dato1.text = p1.fuerza.toString()
@@ -45,6 +50,7 @@ class Resumen : AppCompatActivity() {
         }
         //Boton a siguiente
         binding.buttonComenzar.setOnClickListener {
+            llamada_tts("A jugar!")
             crearActividad(RandomEventActivity::class.java)
         }
 
@@ -99,6 +105,15 @@ class Resumen : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun llamada_tts(texto: String){
+        tts = TextToSpeech(this, TextToSpeech.OnInitListener { status ->
+            if (status != TextToSpeech.ERROR) {
+                tts.language = Locale("es", "ES")
+                tts.speak(texto, TextToSpeech.QUEUE_FLUSH, null)
+            }
+        })
     }
 
     private fun aInicio(clase: Class<MainActivity>) {
