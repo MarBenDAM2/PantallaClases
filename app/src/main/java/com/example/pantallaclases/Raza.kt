@@ -28,7 +28,7 @@ class Raza : AppCompatActivity() {
                 when (button) {
                     binding.buttonElf -> {
                         //Cambiamos la imagen
-                        binding.ImagenRaza.setBackgroundResource(R.drawable.elfo)
+                        binding.ImagenRaza.setImageResource(R.drawable.elfo)
 
                         raza = "elfo"
 
@@ -39,7 +39,7 @@ class Raza : AppCompatActivity() {
                     binding.buttonEnano -> {
 
                         //Cambiamos la imagen
-                        binding.ImagenRaza.setBackgroundResource(R.drawable.enano)
+                        binding.ImagenRaza.setImageResource(R.drawable.enano)
 
                         raza = "enano"
 
@@ -50,7 +50,7 @@ class Raza : AppCompatActivity() {
                     binding.buttonHumano -> {
 
                         //Cambiamos la imagen
-                        binding.ImagenRaza.setBackgroundResource(R.drawable.humano)
+                        binding.ImagenRaza.setImageResource(R.drawable.humano)
 
                         raza = "humano"
 
@@ -60,7 +60,7 @@ class Raza : AppCompatActivity() {
                     }
                     binding.buttonGoblin -> {
                         //Cambiamos la imagen
-                        binding.ImagenRaza.setBackgroundResource(R.drawable.goblin)
+                        binding.ImagenRaza.setImageResource(R.drawable.goblin)
 
                         raza = "goblin"
 

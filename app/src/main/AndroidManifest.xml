@@ -12,16 +12,13 @@
         android:theme="@style/Theme.PantallaClases"
         tools:targetApi="31">
         <activity
+            android:name=".DeadActivity"
+            android:exported="false" />
+        <activity
             android:name=".FightActivity"
             android:exported="false" />
         <activity
-            android:name=".CommerceActivity"
-            android:exported="false" />
-        <activity
             android:name=".EnterActivity"
-            android:exported="false" />
-        <activity
-            android:name=".RecogerActivity"
             android:exported="false" />
         <activity
             android:name=".EnemigoActivity"

@@ -33,13 +33,18 @@ class MercaderActivity : AppCompatActivity() {
                 2.1. El jugador Cancela -> Vuelve al inicio del tradeo
 
             3. El jugador Compra -> Se "activa" la tercera etapa del tradeo
-                3.1. El jugador Vende -> Se "activa" la cuarta etapa del tradeo
+            4. El jugador Vende -> Se "activa" la cuarta etapa del tradeo
 
          */
 
         //Boton "Continuar" -> Vuelve a la pantalla de RandomEvent
         binding.ContinuarButton.setOnClickListener {
-            clase(RandomEventActivity::class.java)
+            if (intent.getIntExtra("Veces", 0) == 1){
+                clase(EnterActivity::class.java)
+            } else {
+                clase(RandomEventActivity::class.java)
+            }
+
         }
 
         //Boton "Comerciar" -> Etapa 2 del tradeo
@@ -88,7 +93,11 @@ class MercaderActivity : AppCompatActivity() {
         val arrayVistasE3Comercio : ArrayList<View> = arrayListOf(binding.EditTextEleccionCantidad, binding.TotalAPagarTxt, binding.PrecioTxt, binding.RealizarCompraButton, binding.DineroActualTxt)
 
         //Mostramos el dinero que tienes
-        binding.DineroActualTxt.text = "Tienes ${personaje.monedero.dinero} monedas"
+        binding.DineroActualTxt.text = buildString {
+            append("Tienes ")
+            append(personaje.monedero.dinero)
+            append(" monedas")
+        }
 
         //Mostramos las vistas de esta etapa
         goneOrNotUI(arrayVistasE3Comercio, false)
@@ -113,10 +122,13 @@ class MercaderActivity : AppCompatActivity() {
                     binding.RealizarCompraButton.isEnabled = personaje.monedero.dinero >= precioTotal && personaje.mochila.tam >= objeto.peso
                 }
             } catch (e: NumberFormatException) { //catch para que cuando borremos el texto no de error
+
                 //limipiamos el editText
                 binding.EditTextEleccionCantidad.text.clear()
+
                 //Precio total a 0.
                 binding.PrecioTxt.text = "0"
+
                 //Boton realizar compra desactivado
                 binding.RealizarCompraButton.isEnabled = false
             }
@@ -133,7 +145,11 @@ class MercaderActivity : AppCompatActivity() {
             addToMochila(objeto, personaje)
 
             //Mostramos el dinero que tienes
-            binding.DineroActualTxt.text = "Tienes ${personaje.monedero.dinero} monedas"
+            binding.DineroActualTxt.text = buildString {
+                append("Tienes ")
+                append(personaje.monedero.dinero)
+                append(" monedas")
+            }
 
             //Ocultamos las vistas de esta eta-pa (la 3)
             goneOrNotUI(arrayVistasE3Comercio, true)
@@ -153,13 +169,17 @@ class MercaderActivity : AppCompatActivity() {
         binding.imageView4.setImageResource(R.drawable.mochila)
 
         //Cambiamos el texto del boton "Realizar compra" por "Realizar venta"
-        binding.RealizarCompraButton.text = "Realizar venta"
+        binding.RealizarCompraButton.text = buildString {
+            append("Realizar venta")
+        }
 
         //Cambio el hint del editText
         binding.EditTextEleccionCantidad.hint = "Nº Objeto a vender"
 
         //Cambio el texto de Total a pagar por Total a recibir
-        binding.TotalAPagarTxt.text = "Total a recibir:"
+        binding.TotalAPagarTxt.text = buildString {
+            append("Total a recibir:")
+        }
 
         //Prueba de texto
         binding.DineroActualTxt.text = buildString {
@@ -223,7 +243,11 @@ class MercaderActivity : AppCompatActivity() {
             personaje.mochila.objetos.removeAt(binding.EditTextEleccionCantidad.text.toString().toInt())
 
             //Mostramos el dinero que tienes
-            binding.DineroActualTxt.text = "Tienes ${personaje.monedero.dinero} monedas"
+            binding.DineroActualTxt.text = buildString {
+                append("Tienes ")
+                append(personaje.monedero.dinero)
+                append(" monedas")
+            }
 
             //Ocultamos las vistas de esta etapa (la 4)
             goneOrNotUI(arrayVistasE4Comercio, true)
@@ -235,31 +259,6 @@ class MercaderActivity : AppCompatActivity() {
             binding.imageView4.setImageResource(R.drawable.mercader)
             etapa2Comercio(arrayBotonesE2Comercio)
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     }
 

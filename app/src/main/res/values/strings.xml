@@ -19,13 +19,13 @@
     <string name="clase">Clase</string>
     <string name="raza">Raza</string>
     <string name="_0">0</string>
-    <string name="defensa">Defensa</string>
-    <string name="mochila">Mochila</string>
-    <string name="monedero">Monedero</string>
+    <string name="defensa">Defensa :</string>
+    <string name="mochila">Mochila :</string>
+    <string name="monedero">Monedero :</string>
     <string name="_100">100</string>
     <string name="_200">200</string>
     <string name="guion">-</string>
-    <string name="vida">Vida</string>
+    <string name="vida">Vida :</string>
     <string name="volver_a_empezar">Volver a empezar</string>
     <string name="comenzar_aventura">Comenzar Aventura</string>
     <string name="paisaje">Paisaje</string>
@@ -42,4 +42,11 @@
     <string name="vender">Vender</string>
     <string name="comprar">Comprar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="has_nperdido">HAS\nPERDIDO</string>
+    <string name="atacar">Atacar</string>
+    <string name="enemigo">Enemigo</string>
+    <string name="vidaTitle">Vida :</string>
+    <string name="tu_vida_title">Tu vida :</string>
+    <string name="fallaste">¡Fallaste!</string>
+    <string name="foto_del_enemigo">Foto del enemigo</string>
 </resources>

@@ -14,11 +14,11 @@ class Resumen : AppCompatActivity() {
     var p1 : Personaje = Personaje(
         Raza().raza,
         MainActivity().nom_clase,
-        200,
+        10000,
         Random.nextInt(10, 15),
         Random.nextInt(1,5),
         Mochila(arrayListOf(), 100),
-        Monedero(1150)
+        Monedero(150)
     )
     private lateinit var binding: ActivityResumenBinding
 
@@ -51,19 +51,19 @@ class Resumen : AppCompatActivity() {
         //Cuando sea una clase u otra entonces pues cambia la imagen y la hace visible
         when (intent.getStringExtra("clase")) {
             "berserker" -> {
-                binding.imgClase.setBackgroundResource(R.mipmap.berserker)
+                binding.imgClase.setImageResource(R.mipmap.berserker)
                 binding.imgClase.visibility = View.VISIBLE
             }
             "ladron" -> {
-                binding.imgClase.setBackgroundResource(R.mipmap.ladron)
+                binding.imgClase.setImageResource(R.mipmap.ladron)
                 binding.imgClase.visibility = View.VISIBLE
             }
             "mago" -> {
-                binding.imgClase.setBackgroundResource(R.mipmap.mago)
+                binding.imgClase.setImageResource(R.mipmap.mago)
                 binding.imgClase.visibility = View.VISIBLE
             }
             "guerrero" -> {
-                binding.imgClase.setBackgroundResource(R.mipmap.berserker)
+                binding.imgClase.setImageResource(R.mipmap.berserker)
                 binding.imgClase.visibility = View.VISIBLE
             }
         }
@@ -71,19 +71,19 @@ class Resumen : AppCompatActivity() {
         //Cuando la raza sea la que sea pues cambia la imagen y la hace visible
         when (intent.getStringExtra("raza")) {
             "elfo" -> {
-                binding.imgRaza.setBackgroundResource(R.drawable.elfo)
+                binding.imgRaza.setImageResource(R.drawable.elfo)
                 binding.imgRaza.visibility = View.VISIBLE
             }
             "enano" -> {
-                binding.imgRaza.setBackgroundResource(R.drawable.enano)
+                binding.imgRaza.setImageResource(R.drawable.enano)
                 binding.imgRaza.visibility = View.VISIBLE
             }
             "humano" -> {
-                binding.imgRaza.setBackgroundResource(R.drawable.humano)
+                binding.imgRaza.setImageResource(R.drawable.humano)
                 binding.imgRaza.visibility = View.VISIBLE
             }
             "goblin" -> {
-                binding.imgRaza.setBackgroundResource(R.drawable.goblin)
+                binding.imgRaza.setImageResource(R.drawable.goblin)
                 binding.imgRaza.visibility = View.VISIBLE
             }
         }

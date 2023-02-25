@@ -44,7 +44,9 @@ class ObjetoActivity : AppCompatActivity() {
             "Vara" -> binding.imageView2.setImageResource(R.drawable.vara)
         }
 
-
+        if (intent.getIntExtra("Veces", 0) == 1){
+            binding.button.isEnabled = false
+        }
         binding.button.setOnClickListener{
             crearIntent(RandomEventActivity::class.java)
         }
@@ -60,7 +62,12 @@ class ObjetoActivity : AppCompatActivity() {
                 binding.textView2.visibility = View.VISIBLE
             }
 
-            crearIntent(RandomEventActivity::class.java)
+            //Esta comprobacion es para ver si viene desde la ciudad o no.
+            if (intent.getIntExtra("Veces", 0) == 1){
+                crearIntent(EnterActivity::class.java)
+            } else {
+                crearIntent(RandomEventActivity::class.java)
+            }
         }
     }
     private fun crearIntent(Class: Class<*>){

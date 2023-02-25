@@ -38,7 +38,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
         tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/berserker" />
+        tools:srcCompat="@mipmap/berserker" />
 
     <ImageView
         android:id="@+id/imgRaza"
@@ -60,11 +60,9 @@
 
     <LinearLayout
         android:id="@+id/linearLayout6"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
         android:layout_marginTop="32dp"
-        android:layout_marginEnd="35dp"
         android:layout_marginBottom="36dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/buttonVuelta"
@@ -73,7 +71,7 @@
         app:layout_constraintTop_toBottomOf="@+id/imgClase">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -82,20 +80,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingEnd="-30dp"
-                android:text="Fuerza"
+                android:text="Fuerza :"
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
             <TextView
                 android:id="@+id/Dato1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="@string/_0" />
+                android:text="@string/_100" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -103,8 +101,7 @@
                 android:id="@+id/Titulo2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingEnd="-40dp"
+                android:layout_weight="0.2"
                 android:text="@string/defensa"
                 tools:ignore="RtlSymmetry" />
 
@@ -112,12 +109,13 @@
                 android:id="@+id/Dato2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="@string/_0" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -125,21 +123,21 @@
                 android:id="@+id/Titulo3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingEnd="-22dp"
-                android:text="@string/mochila"
+                android:layout_weight="0.1"
+                android:text="@string/vida"
                 tools:ignore="RtlSymmetry" />
 
             <TextView
                 android:id="@+id/Dato3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="@string/_100" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -147,19 +145,20 @@
                 android:id="@+id/Titulo4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/vida" />
+                android:layout_weight="0.1"
+                android:text="@string/mochila" />
 
             <TextView
                 android:id="@+id/Dato4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="@string/_200" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -167,8 +166,7 @@
                 android:id="@+id/Titulo5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingEnd="-55dp"
+                android:layout_weight="0.05"
                 android:text="@string/monedero"
                 tools:ignore="RtlSymmetry" />
 
@@ -176,8 +174,9 @@
                 android:id="@+id/Dato5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="@string/guion" />
+                android:text="@string/_0" />
         </LinearLayout>
 
     </LinearLayout>
